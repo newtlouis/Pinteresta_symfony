@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Retrouvez tous les meilleurs pins au monde !' %}
+
+{% block body %}
+	<h1>All pins</h1>
+
+	<section class="articles">
+		<article>
+			<h2>titre de l'article</h2>
+			<div class="metadata">écrit ajd dans la catégorie politique</div>
+			<div class="content">
+				<img src="http://placehold.it/350x150" alt="image_test">
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, odio! Tempore a cumque perspiciatis qui!</p>
+				<p>Accusamus officiis magnam delectus eveniet, rerum tenetur quisquam repellendus esse quam, illum culpa id autem.</p>
+				<a href="{{ path('pin_show') }}" class="btn btn-primary">lire la suite</a>
+			</div>
+		</article>
+		<article>
+			<h2>titre de l'article</h2>
+			<div class="metadata">écrit ajd dans la catégorie politique</div>
+			<div class="content">
+				<img src="http://placehold.it/350x150" alt="image_test">
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed sunt sequi veritatis quidem pariatur praesentium.</p>
+				<p>Consectetur maiores molestiae temporibus possimus dolorem saepe eum pariatur itaque laudantium vitae voluptate, enim aspernatur!</p>
+				<a href="{{ path('pin_show') }}" class="btn btn-primary">lire la suite</a>
+			</div>
+		</article>
+		<article>
+			<h2>titre de l'article</h2>
+			<div class="metadata">écrit ajd dans la catégorie politique</div>
+			<div class="content">
+				<img src="http://placehold.it/350x150" alt="image_test">
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur accusamus veritatis, error quia qui illo!</p>
+				<p>Magnam quibusdam ratione tempore possimus! Quae veritatis qui esse, illum consequuntur consequatur itaque saepe doloribus?</p>
+				<a href="{{ path('pin_show') }}" class="btn btn-primary">lire la suite</a>
+			</div>
+		</article>
+
+	</section>
+
+
+{% endblock %}
