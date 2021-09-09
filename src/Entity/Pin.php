@@ -23,9 +23,19 @@ class Pin
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private $content;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -44,14 +54,38 @@ class Pin
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getContent(): ?string
     {
-        return $this->description;
+        return $this->content;
     }
 
-    public function setDescription(string $description): self
+    public function setContent(?string $content): self
     {
-        $this->description = $description;
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
