@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% form_theme formPin 'bootstrap_4_layout.html.twig' %}
+
+
+{% block body %}
+
+    <h1>Création d'un nouveau Pin !</h1>
+
+    {{form_start(formPin)}}
+    {{form_row(formPin.title, {'attr' : {'placeholder': 'Titre de l\'article'}}) }}
+    {{form_row(formPin.content, {'attr' : {'placeholder': 'Contenu de l\'article'}}) }}
+    {{form_row(formPin.image, {'attr' : {'placeholder': 'Image de l\'article'}}) }}
+
+    <button type="submit" class="btn btn-sucess">Ajouter l'article</button>
+
+    {{form_end(formPin)}}
+
+
+{% endblock %}
