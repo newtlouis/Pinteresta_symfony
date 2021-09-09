@@ -3,13 +3,12 @@
 {% block body %}
 
     <article>
-        <h2>titre de l'article</h2>
-        <div class="metadata">écrit ajd dans la catégorie politique</div>
+        <h2>{{ pin.title }}</h2>
+        <div class="metadata">écrit le {{pin.createdAt | date('d/m/Y')}} à {{pin.createdAt | date('H:i')}} dans la catégorie politique</div>
         <div class="content">
-            <img src="http://placehold.it/350x150" alt="image_test">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed sunt sequi veritatis quidem pariatur praesentium.</p>
-            <p>Consectetur maiores molestiae temporibus possimus dolorem saepe eum pariatur itaque laudantium vitae voluptate, enim aspernatur!</p>
-            <a href="{{ path('pin_show') }}" class="btn btn-primary">lire la suite</a>
+            <img src={{pin.image}} alt="image_test">
+            {{pin.content | raw}}
+            
         </div>
 	</article>
 
