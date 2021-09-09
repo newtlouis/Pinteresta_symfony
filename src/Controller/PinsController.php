@@ -34,7 +34,7 @@ class PinsController extends AbstractController
     }
 
     #[Route('/pins/new', name: 'pin_create')]
-    public function create(): Response
+    public function createPin(Request $request): Response
     {
         $pin = new Pin();
 
@@ -43,6 +43,18 @@ class PinsController extends AbstractController
             ->add('content')
             ->add('image')
             ->getForm();
+        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $pin->setCreatedAt(new \DateTimeImmutable());
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($pin);
+            $manager->flush();
+
+            return $this->redirectToRoute('pin_show', ['id' => $pin->getId()]);
+        }
 
         return $this->render('pins/create.html.twig', [
             'formPin' => $form->createView()

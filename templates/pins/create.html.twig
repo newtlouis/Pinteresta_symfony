@@ -4,14 +4,14 @@
 
 {% block body %}
 
-    <h1>Création d'un nouveau Pin !</h1>
+	<h1>Création d'un nouveau Pin !</h1>
 
-    {{form_start(formPin)}}
-    {{form_row(formPin.title, {'attr' : {'placeholder': 'Titre de l\'article'}}) }}
+	{{form_start(formPin)}}
+	{{form_row(formPin.title, {'attr' : {'placeholder': 'Titre de l\'article'}}) }}
     {{form_row(formPin.content, {'attr' : {'placeholder': 'Contenu de l\'article'}}) }}
-    {{form_row(formPin.image, {'attr' : {'placeholder': 'Image de l\'article'}}) }}
+	{{form_row(formPin.image, {'attr' : {'placeholder': 'Image de l\'article'}}) }}
 
-    <button type="submit" class="btn btn-sucess">Ajouter l'article</button>
+    <button type="submit" class="btn btn-success my-4">Ajouter l'article</button>
 
     {{form_end(formPin)}}
 
