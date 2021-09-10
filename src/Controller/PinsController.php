@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Pin;
+use App\Form\PinType;
 use App\Repository\PinRepository;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,15 +35,14 @@ class PinsController extends AbstractController
     }
 
     #[Route('/pins/new', name: 'pin_create')]
-    public function createPin(Request $request): Response
-    {
-        $pin = new Pin();
+    #[Route('/pins/{id}/edit', name: 'pin_edit')]
+    public function form(Pin $pin = null, Request $request): Response
+    {   
+        if (!$pin){
+            $pin = new Pin();
+        }
 
-        $form = $this->createFormbuilder($pin)
-            ->add('title')
-            ->add('content')
-            ->add('image')
-            ->getForm();
+        $form = $this->createForm(PinType::class, $pin);
         
         $form->handleRequest($request);
         
@@ -57,7 +57,8 @@ class PinsController extends AbstractController
         }
 
         return $this->render('pins/create.html.twig', [
-            'formPin' => $form->createView()
+            'formPin' => $form->createView(),
+            'editMode' => $pin->getId() !== null
         ]);
     }
 

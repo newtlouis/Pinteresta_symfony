@@ -5,21 +5,26 @@
 {% block body %}
 	<h1>All pins</h1>
 
-	<section class="articles">
+	<section class="flex">
 
-	{% for pin in pins %}
+		{% for pin in pins %}
 
-		<article>
-			<h2>{{pin.title}}</h2>
-			<div class="metadata">écrit le {{pin.createdAt | date('d/m/Y')}} à {{pin.createdAt | date('H:i')}} dans la catégorie politique</div>
-			<div class="content">
-				<img src={{pin.image}} alt="image_test">
-				{{pin.content| raw}}
+			<article style="width:600px">
+				<h2>{{pin.title}}</h2>
+				<div class="metadata">écrit le
+					{{pin.createdAt | date('d/m/Y')}}
+					à
+					{{pin.createdAt | date('H:i')}}
+					dans la catégorie politique</div>
+				<div class="content">
+					<img src={{pin.image}} alt="image_test">
+					{{pin.content| raw}}
+				</div>
 				<a href="{{ path('pin_show', {'id' : pin.id}) }}" class="btn btn-primary">lire la suite</a>
-			</div>
-		</article>
 
-	{% endfor %}
+			</article>
+
+		{% endfor %}
 
 
 	</section>

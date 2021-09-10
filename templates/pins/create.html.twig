@@ -8,10 +8,17 @@
 
 	{{form_start(formPin)}}
 	{{form_row(formPin.title, {'attr' : {'placeholder': 'Titre de l\'article'}}) }}
+	{{form_row(formPin.category)}}
     {{form_row(formPin.content, {'attr' : {'placeholder': 'Contenu de l\'article'}}) }}
 	{{form_row(formPin.image, {'attr' : {'placeholder': 'Image de l\'article'}}) }}
 
-    <button type="submit" class="btn btn-success my-4">Ajouter l'article</button>
+    <button type="submit" class="btn btn-success my-4">
+    {% if editMode %}
+        Enregistrer les modifications
+    {% else %}
+        Ajouter l'article
+    {% endif %}
+    </button>
 
     {{form_end(formPin)}}
 
