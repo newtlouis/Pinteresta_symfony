@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
+   
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -29,10 +33,14 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", minMessage="Votre mot de passe doit fair au minimum 8 charactères")
      */
     private $password;
 
-    private $confirm_password;
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe")
+     */
+    public $confirm_password;
 
     public function getId(): ?int
     {
@@ -78,5 +86,39 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    // public function __construct(UserPasswordHasherInterface $passwordHasher)
+    //  {
+    //      $this->passwordHasher = $passwordHasher;
+    //  }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        // il est obligatoire d'avoir au moins un rôle si on est authentifié, par convention c'est ROLE_USER
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+    public function getUserIdentifier(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+    public function eraseCredentials(): void
+    {
     }
 }
